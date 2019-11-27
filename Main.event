@@ -1,0 +1,37 @@
+#ifndef MAIN
+#define MAIN
+
+#include "EAstdlib.event"
+#include "Extensions/Hack Installation.txt"
+
+#define DataFreeSpace    $EFB2E0
+#define DataFreeSpaceEnd $FE0000
+
+#define FreeSpace        $B2A610
+#define FreeSpaceEnd     $C00000
+
+#include "GameData/Definitions.event"
+
+ASSERT (0 - CURRENTOFFSET) // Ensure no definition files actually wrote data
+
+ORG DataFreeSpace
+	// Raw Data (Text, Gfx, Music)
+
+	#include "Spritans/Portraits.event"
+
+	#include "Writans/Text.event"
+
+	// Ensure data didn't overflow in non-free space
+	ASSERT (DataFreeSpaceEnd - CURRENTOFFSET)
+
+ORG FreeSpace
+	// More refined data (Tables, Wizardry, Chapters)
+
+	#include "GameData/GameData.event"
+
+	#include "Wizardry/Wizardry.event"
+
+	// Ensure data didn't overflow in non-free space
+	ASSERT (FreeSpaceEnd - CURRENTOFFSET)
+
+#endif // MAIN

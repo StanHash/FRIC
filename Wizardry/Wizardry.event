@@ -1,0 +1,6 @@
+#ifndef WIZARDRY_INCLUDED
+#define WIZARDRY_INCLUDED
+
+// Include wizardry (engine hacks) here
+
+#endif // WIZARDRY_INCLUDED

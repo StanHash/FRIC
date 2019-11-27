@@ -1,0 +1,6 @@
+#ifndef GAMEDATA_INCLUDED
+#define GAMEDATA_INCLUDED
+
+// Include game data (tables and similar objects) here
+
+#endif // GAMEDATA_INCLUDED
