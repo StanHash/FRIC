@@ -24,14 +24,19 @@ else
   export PYTHON3 := python3
 endif
 
-# additional tools
-export PARSEFILE         := $(realpath .)/Tools/ParseFile$(EXE)
-export PORTRAITFORMATTER := $(realpath .)/Tools/PortraitFormatter$(EXE)
-export GBAGFX            := $(realpath .)/Tools/gbagfx$(EXE)
+# Tools included with EA
+export PARSEFILE         := $(EADIR)/Tools/ParseFile$(EXE)
+export PORTRAITFORMATTER := $(EADIR)/Tools/PortraitFormatter$(EXE)
+export PNG2DMP           := $(EADIR)/Tools/Png2Dmp$(EXE)
+export COMPRESS          := $(EADIR)/Tools/compress$(EXE)
+
+# Tools included with PyTools
 export PORTRAIT_PROCESS  := $(PYTHON3) $(realpath .)/Tools/Py/portrait-process.py
 export TEXT_PROCESS      := $(PYTHON3) $(realpath .)/Tools/Py/text-process-classic.py
 export C2EA              := $(PYTHON3) $(realpath .)/Tools/Py/NMM2CSV/c2ea.py
 export TMX2EA            := $(PYTHON3) $(realpath .)/Tools/Py/TMX2EA/tmx2ea.py
+
+# Additional tools
 export EADEP             := $(realpath .)/Tools/ea-dep$(EXE)
 export LYN               := $(realpath .)/Tools/lyn$(EXE)
 

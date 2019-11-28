@@ -20,12 +20,6 @@ $(WRITANS_INSTALLER) $(WRITANS_DEFINITIONS): $(WRITANS_TEXT_MAIN) $(WRITANS_ALL_
 	$(NOTIFY_PROCESS)
 	@$(TEXT_PROCESS) $(WRITANS_TEXT_MAIN) --installer $(WRITANS_INSTALLER) --definitions $(WRITANS_DEFINITIONS) --parser-exe $(PARSEFILE)
 
-# Convert formatted text to insertable binary
-# Nulling output because it's annoying
-%.fetxt.dmp: %.fetxt
-	$(NOTIFY_PROCESS)
-	@$(PARSEFILE) $< -o $@ > /dev/null
-
 # ==============
 # = MAKE CLEAN =
 # ==============

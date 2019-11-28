@@ -34,7 +34,8 @@ EVENT_MAIN    := Main.event
 EVENT_DEPENDS := $(shell $(EADEP) $(EVENT_MAIN) -I $(realpath .)/Tools/EventAssembler --add-missings)
 
 # Additional EA commandline flags
-EAFLAGS := -raws:Tools/EA-Raws
+EAFLAGS :=
+# EAFLAGS := -raws:Tools/EA-Raws
 
 $(ROM_TARGET): $(EVENT_MAIN) $(EVENT_DEPENDS) $(ROM_SOURCE)
 	@echo Building $(ROM_TARGET).

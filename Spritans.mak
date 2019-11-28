@@ -35,7 +35,8 @@ $(PORTRAIT_INSTALLER): $(PORTRAIT_LIST) $(shell $(PORTRAIT_PROCESS) $(PORTRAIT_L
 # Anything to lz rule
 %.lz: %
 	$(NOTIFY_PROCESS)
-	@$(GBAGFX) $< $@
+	@$(COMPRESS) $< --to-stdout > $@
+#	@$(GBAGFX) $< $@
 
 ifeq ($(MAKECMDGOALS),clean)
 
