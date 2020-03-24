@@ -3,4 +3,6 @@
 
 // Include game data (tables and similar objects) here
 
+#include "Tables/Item.event"
+
 #endif // GAMEDATA_INCLUDED

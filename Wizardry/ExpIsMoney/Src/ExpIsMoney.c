@@ -6,7 +6,7 @@ extern u16 const EIM_DispPal[];
 
 static int Exp2Mone(int exp)
 {
-	return exp * 3;
+	return exp * 2;
 }
 
 void ExpGainIsMoneyGain(struct Unit* unit, struct BattleUnit* bu)
