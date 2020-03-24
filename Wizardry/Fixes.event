@@ -1,0 +1,120 @@
+#ifndef FIXES_INCLUDED
+#define FIXES_INCLUDED
+
+#include "Extensions/Hack Installation.txt"
+
+PUSH
+
+	// Fix Stone's map animation crashing no$ due to a bad decompression (Teq?)
+	ORG $07E2B4
+		BYTE 8
+
+	// Set Default Options (circles?)
+	ORG $030D8A // animations type 2
+		SHORT $3306
+	ORG $030DA6 // Game/text speed Fast, Autocursor off
+		SHORT $22D0
+
+	// 12 Tracks/16 Sounds Fix (credit Agro/Brendor)
+	ORG $002900
+		SHORT $e00c
+	ORG $002924
+		SHORT $280c $d00e $200c
+	ORG $22440C
+		BYTE $10
+	ORG $224414
+		SHORT $67b0 $0300 $0010
+
+	// Fix Weak Promoted Enemies (Gryz)
+	ORG $0180B4
+		SHORT $2A00 $DC00 $2201
+
+	// Skip H&S and Ninty&IntSys screens (Stan)
+	ORG $59170C
+		WORD 2 $8000D01
+
+	// Autocursor Fix (Vennobennu)
+	ORG $03325A
+		SHORT $E021
+
+	// Pierce Glitch Fix (Brendor)
+	ORG $02B290
+		BYTE $A0
+
+	// CG Fade glitch
+	ORG $00EBCA
+		BYTE 8
+	ORG $EDE0
+		SHORT $1C0A
+
+	// Enemy Control Glitch Fix (Brendor)
+	ORG $0377A0
+		SHORT $E007
+
+	// Mode Coefficient EXP fix (Vennobennu)
+	ORG $02C474
+		WORD 0
+
+	// Fix proc names not being cleared (Stan)
+	ORG $002C9E
+		SHORT $6129 $2026 $5429 $3002 $5429
+
+	// Fix CAM1/CAMERA2 going out of bounds (Stan)
+	ORG $015D52
+		BYTE 14
+	ORG $015D66
+		BYTE 9
+
+	// Don't draw portrait on item select menu if unit is generic (hypergammaspaces)
+	ORG $22BE8
+		SHORT $6808 $88C0 $2800
+
+	{
+
+	// Anti-Huffman Patch, by Hextator and Nintenlord
+
+	ORG $2BA4 //Pointer Tester
+		BYTE $00 $B5 $C2 $0F $02 $D0 
+		BL(uncompHelper) /*$07 $F0 $63 $FB*/
+		SHORT $E001
+		BL(compressedHelper) /*$07 $F0 $58 $FB*/
+		SHORT $BD00
+
+	ORG $A24A
+		BYTE $05 $D0 $04 $49 $28 $1C $00 $F0 $16 $F8 $35 $60 $00 $E0 $01 $48 $70 $BC $00 $BD $00 $00 
+		WORD $0202A6AC
+
+	compressedHelper:
+		SHORT $B500 $4A02 $6812
+		BL($D18C8) //In-game unencoding routine, I assume
+		SHORT $BD00 
+		WORD $03004150
+
+	uncompHelper:
+		jumpToHack(AntiHuffmanFreeSpace) //FEditor uses r2 instead of r3, but it shouldn't matter.
+
+	ORG $464470
+		AntiHuffmanFreeSpace: //Can be relocated as necessary.
+		BYTE $80 $23 $1B $06 $C0 $1A $02 $78 $0A $70 $01 $31 $01 $30 $00 $2A $F9 $D1 $70 $47
+
+	}
+
+	// Animation Hacks by Hextator
+
+	// C01 hack
+	ORG $46446c
+		WORD $80522cd
+	ORG $5138
+		WORD $47004800 $8464421
+	ORG $464420
+		WORD $401820FF $D00A2801 $D8062818 $6A10D103 $62103804 $4B0BE013 $4B0B4718 $041B4718 $009B0E1B $3101A102 $4908468E $46C04708 $D1002801 $33042300 $1AC06A10 $1C206210 $46C0BD30 $08005145 $08005159 $080522CD
+
+	// C48 hack
+	ORG $58d64
+		WORD $8464400
+	ORG $464400
+		WORD $3D046A3D $022D682D $A5020C28 $46AE3501 $47284D01 $47004801 $08071991 $080596CD
+
+POP
+
+#endif // FIXES_INCLUDED

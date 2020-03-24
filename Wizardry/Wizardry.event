@@ -3,4 +3,29 @@
 
 // Include wizardry (engine hacks) here
 
+#include "Fixes.event"
+
+#include "Hooks/BattleUnitHook/BattleUnitHook.event"
+
+#include "GameOverIfNoGold/GameOverIfNoGold.event"
+#include "UsingItemsCostMoney/UsingItemsCostMoney.event"
+#include "ExpIsMoney/ExpIsMoney.event"
+#include "DeployTax/DeployTax.event"
+
+
+ALIGN 4
+Unit2BattleFuncList:
+	POIN UnitToBattleVanilla
+
+	WORD 0
+
+ALIGN 4
+Battle2UnitFuncList:
+	POIN BattleToUnitVanilla
+
+	POIN ExpGainIsMoneyGain
+	POIN UsingWeaponsCostsMoney
+
+	WORD 0
+
 #endif // WIZARDRY_INCLUDED

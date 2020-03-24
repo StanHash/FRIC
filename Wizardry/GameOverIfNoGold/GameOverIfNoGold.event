@@ -1,0 +1,24 @@
+
+#include "Src/GOING.lyn.event"
+#include "Src/GOING-Window.lyn.event"
+
+PUSH
+
+	ORG $024DE8
+		WORD $46C04778 $E59FC000 $E12FFF1C; POIN NuggetGold
+
+	ORG $024E04
+		WORD $46C04778 $E59FC000 $E12FFF1C; POIN NuSetGold
+
+	ORG $018FF0
+		WORD $46C04778 $E59FC000 $E12FFF1C; POIN NuCountAvailableBlueUnits
+
+	// Always have one line on the goal window
+	ORG $08D311; BYTE $E0 // jump always
+	ORG $08D328; BYTE $00 // set to 0
+
+	// Draw gold amount in goal window
+	ORG $08D200
+		WORD $46C04778 $E59FC000 $E12FFF1C; POIN NuPiPutFrame
+
+POP

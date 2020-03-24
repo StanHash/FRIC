@@ -1,0 +1,12 @@
+
+#include "Src/DeployTax.lyn.event"
+
+PUSH
+
+	ORG $59A2D4
+		POIN DoDeployTax
+
+	ORG $086FAC
+		WORD $46C04778 $E59FC000 $E12FFF1C; POIN NuDrawStatScreenBwl
+
+POP

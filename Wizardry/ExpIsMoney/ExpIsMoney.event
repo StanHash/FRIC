@@ -1,0 +1,20 @@
+
+#include "Src/ExpIsMoney.lyn.event"
+
+ALIGN 4
+EIM_DispImg:
+	#incbin "Data/Disp.4bpp"
+
+ALIGN 4
+EIM_DispPal:
+	#incbin "Data/Disp.gbapal"
+
+PUSH
+
+	ORG $9A372C
+		POIN NuInitExpBarFilling
+
+	ORG $9A374C
+		POIN NuClearExpBar
+
+POP
