@@ -22,6 +22,9 @@ int GetUnitDeployTax(struct Unit* unit)
 	if (unit->statusIndex != 0)
 		tax += 50;
 
+	for (int i = 0; i < 8; ++i)
+		tax += unit->ranks[i] / 8;
+
 	if (unit->state & US_RESCUING)
 		tax *= 2;
 
@@ -36,7 +39,7 @@ int GetUnitDeployTax(struct Unit* unit)
 s8 DoDeployTax(struct Proc* parent)
 {
 	static char const* const POPUP_STR_PREFIX = "Unit Tax: ";
-	static char const* const POPUP_STR_MINUS  = "-";
+	// static char const* const POPUP_STR_MINUS  = "-";
 	static char const* const POPUP_STR_SUFFIX = "G";
 
 	static u32 const POPUP[] =
@@ -44,10 +47,11 @@ s8 DoDeployTax(struct Proc* parent)
 		8, TEXT_COLOR_NORMAL,
 		7, (u32) POPUP_STR_PREFIX,
 
-
 		8, TEXT_COLOR_BLUE,
-		7, (u32) POPUP_STR_MINUS,
+		// 7, (u32) POPUP_STR_MINUS,
 		11, 0,
+
+		1, 1, // space
 
 		8, TEXT_COLOR_GOLD,
 		7, (u32) POPUP_STR_SUFFIX,
