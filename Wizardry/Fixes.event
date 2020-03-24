@@ -10,8 +10,8 @@ PUSH
 		BYTE 8
 
 	// Set Default Options (circles?)
-	ORG $030D8A // animations type 2
-		SHORT $3306
+	ORG $030D8A // animations off
+		SHORT $3302
 	ORG $030DA6 // Game/text speed Fast, Autocursor off
 		SHORT $22D0
 

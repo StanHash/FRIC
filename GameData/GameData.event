@@ -5,4 +5,23 @@
 
 #include "Tables/Item.event"
 
+// Give money in addition to rapier
+
+PUSH
+
+	ORG $9EECA4
+		CALL scEventHook
+
+POP
+
+ALIGN 4
+scEventHook:
+	CALL $9EF060 // Replaced call
+
+	// Give 776 gold to start the player off
+	SVAL r3 776
+	GIVEITEMTOMAIN 0
+
+	ENDA
+
 #endif // GAMEDATA_INCLUDED
