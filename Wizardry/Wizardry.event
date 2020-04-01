@@ -12,6 +12,8 @@
 #include "ExpIsMoney/ExpIsMoney.event"
 #include "DeployTax/DeployTax.event"
 
+#include "EvilRn/EvilRn.event"
+#include "Nice.event"
 
 ALIGN 4
 Unit2BattleFuncList:
